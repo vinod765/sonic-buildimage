@@ -1,4 +1,4 @@
-{
+{%- macro generate_tc_to_pg_map_per_sku() -%}
     "TC_TO_PRIORITY_GROUP_MAP": {
         "AZURE": {
             "0": "1",
@@ -7,12 +7,18 @@
             "4": "4"
         }
     },
+{%- endmacro -%}
+
+{%- macro generate_pfc_to_queue_map() -%}
     "MAP_PFC_PRIORITY_TO_QUEUE": {
         "AZURE": {
             "3": "3",
             "4": "4"
         }
     },
+{%- endmacro -%}
+
+{%- macro generate_tc_to_queue_map_per_sku() -%}
     "TC_TO_QUEUE_MAP": {
         "AZURE": {
             "0": "1",
@@ -21,6 +27,9 @@
             "4": "4"
         }
     },
+{%- endmacro -%}
+
+{%- macro generate_dscp_to_tc_map_per_sku() -%}
     "DSCP_TO_TC_MAP": {
         "AZURE": {
             "0":"1",
@@ -89,6 +98,9 @@
             "63":"0"
         }
     },
+{%- endmacro -%}
+
+{%- macro generate_scheduler_per_sku() -%}
     "SCHEDULER": {
         "scheduler.0" : {
             "type":"DWRR",
@@ -103,8 +115,9 @@
             "weight": "20"
         }
     },
-    "PORT_QOS_MAP": {
-    },
+{%- endmacro -%}
+
+{%- macro generate_wred_profiles() -%}
     "WRED_PROFILE": {
         "AZURE_LOSSY" : {
             "wred_green_enable":"true",
@@ -131,6 +144,17 @@
             "green_min_threshold": "184128"
         }
     },
+{%- endmacro -%}
+
+{%- macro generate_port_qos_map(port_names_active) -%}
+    "PORT_QOS_MAP": {
+    },
+{%- endmacro -%}
+
+{%- macro generate_queue_config(port_names_active) -%}
     "QUEUE": {
-    }
-}
+    },
+{%- endmacro -%}
+
+
+{%- include 'qos_config.j2' %}
